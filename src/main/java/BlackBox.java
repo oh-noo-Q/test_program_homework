@@ -1,18 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class BlackBox {
-    public static final int priceEach = 100;
+    public static final int priceEach = 150;
 
-    public static double checkout(int quantity, int cumulativePoints) {
+    public static String checkout(int quantity, int cumulativePoints) {
         double discount = 0;
-        if(cumulativePoints < 0 || cumulativePoints > 100) {
-            System.out.println("Invalid input");
-            return -1;
-        }
-        if(quantity < 1 || quantity > 200) {
-            System.out.println("Invalid input");
-            return -1;
+        String total = "";
+        if(cumulativePoints < 0 || cumulativePoints > 100 || quantity < 1 || quantity > 200) {
+            total = "Invalid input";
+            return total;
         }
         if(1 <= quantity && 10 > quantity) {
             if(cumulativePoints == 0){}
@@ -34,7 +28,7 @@ public class BlackBox {
             else if(cumulativePoints > 0 && cumulativePoints < 40) discount = 0.12;
             else discount = 0.15;
         }
-        double total = 150 * (double)quantity * (1 - discount);
+        total = Double.toString(priceEach * (double)quantity * (1 - discount));
         return total;
     }
 }
